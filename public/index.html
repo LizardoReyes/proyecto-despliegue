@@ -23,7 +23,7 @@
         const button = document.querySelector("button")
         const result = document.querySelector("#result")
         button.addEventListener("click", ev => {
-            fetch(`http://${location.host}/api/uuid`)
+            fetch(`https://${location.host}/api/uuid`)
             .then(res => res.json())
             .then(data => result.textContent = data)
             .catch(err => result.textContent = "Por alguna razón, no se pudo obtener un UUID.")
