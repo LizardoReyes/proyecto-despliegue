@@ -30,6 +30,17 @@ app.use((req, res, next) => {
     }
 })
 
+// Para redireccionar el www a no www
+app.use((req, res, next) => {
+    if (req.headers.host.startsWith("www.")) {
+        req.headers.host = req.headers.host.replace("www.", "")
+        res.redirect(301, `https://${req.headers.host}${req.url}`)
+    } else {
+        next();
+    }
+
+})
+
 app.use(express.static(path.join(__dirname, "public")))
 
 app.get("/api/uuid", (req, res) => {
